@@ -1,5 +1,5 @@
 'use client'
-import { Box } from "@mui/material";
+import { Box, Button, Stack, TextField } from "@mui/material";
 import Image from "next/image";
 import { useState } from "react";
 
@@ -38,7 +38,7 @@ export default function Home() {
           key={index}
           display="flex"
           justifyContent={
-            message.role ==='assistant' ? 'flex-start' : 'flex-ned'
+            message.role ==='assistant' ? 'flex-start' : 'flex-end'
           }> 
           <Box
           bgcolor={
