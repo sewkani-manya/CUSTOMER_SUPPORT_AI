@@ -1,6 +1,5 @@
 'use client'
 import { Box, Button, Stack, TextField } from "@mui/material";
-import Image from "next/image";
 import { useState } from "react";
 
 export default function Home() {
@@ -11,6 +10,7 @@ export default function Home() {
     }
   ])
   const [message, setMessage]=useState('')
+
   const sendMessage = async () => {
     setMessage('')
     setMessages((messages) => [
@@ -19,7 +19,7 @@ export default function Home() {
       { role: 'assistant', content: ''},
     ])
 
-    const respons = fetch('/api/chat',{
+    const response = fetch('/api/chat',{
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -36,11 +36,11 @@ export default function Home() {
         }
         const text = decoder.decode(value || new Uint8Array(), { stream: true})
         setMessages((messages) =>{
-          let lastMessage = messages[messades.length - 1]
+          let lastMessage = messages[messages.length - 1]
           let otherMessages = messages.slice(0, messages.length - 1)
           return [
             ...otherMessages,
-            {...lastMeassge, content: lastMessage.content + text},
+            {...lastMessage, content: lastMessage.content + text},
           ]
         })
         return reader.read().then(processText)
